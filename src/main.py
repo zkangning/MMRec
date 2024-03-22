@@ -20,7 +20,7 @@ if __name__ == '__main__':
     parser.add_argument('--mg', action="store_true", help='whether to use Mirror Gradient, default is False')
 
     config_dict = {
-        'gpu_id': 0,
+        'gpu_id': 1,
     }
 
     args, _ = parser.parse_known_args()
