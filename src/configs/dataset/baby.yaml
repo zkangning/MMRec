@@ -20,10 +20,10 @@ v_weight: 0.1
 t_weight: 0.9  # 用于增强和去噪的权重
 # modal_augmentation
 modal_augment: False
-augment_threshold: 5    # 对训练数据集中交互数小于5个的进行增强
-modal_augment_ratio: 0.5   # 额外补充k个交互物品
+augment_threshold: 3    # 对训练数据集中交互数小于5个的进行增强
+modal_augment_ratio: 0.35   # 额外补充k个交互物品
 # modal_denoise
-modal_denoise: False
+modal_denoise: True
 denoise_threshold: 15
-modal_denoise_ratio: 0.2
+modal_denoise_ratio: 0.1
 
