@@ -25,3 +25,4 @@ modal_augment_ratio: 0.35   # 额外补充k个交互物品
 modal_denoise: True
 denoise_threshold: 15
 modal_denoise_ratio: 0.1
+

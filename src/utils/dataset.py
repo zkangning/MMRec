@@ -117,7 +117,7 @@ class RecDataset(object):
                 t_sim = F.cosine_similarity(self.t_feat, user_t, dim=1)
                 # 对两个模态的相似度进行加权
                 sim = v_sim * config['v_weight'] + t_sim * config['t_weight']
-                k = int(config['modal_augment_ratio'] * len(all_items_per_user[user]))
+                k = int(config['modal_augment_num'])
                 # 取出最相近的k个物品, 但应排除掉原本存在于训练集中的物品
                 topk_item = sim.argsort(descending=True)
                 mask = torch.tensor([i not in all_items_per_user[user] for i in range(len(topk_item))]).to(config['device'])

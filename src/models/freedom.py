@@ -35,6 +35,7 @@ class FREEDOM(GeneralRecommender):
         self.mm_image_weight = config['mm_image_weight']
         self.dropout = config['dropout']
         self.degree_ratio = config['degree_ratio']
+        self.desc = config['desc']
 
         self.n_nodes = self.n_users + self.n_items
 
@@ -52,7 +53,10 @@ class FREEDOM(GeneralRecommender):
         nn.init.xavier_uniform_(self.item_id_embedding.weight)
 
         dataset_path = os.path.abspath(config['data_path'] + config['dataset'])
-        mm_adj_file = os.path.join(dataset_path, 'mm_adj_freedomdsp_{}_{}.pt'.format(self.knn_k, int(10*self.mm_image_weight)))
+        if self.desc == None:
+            mm_adj_file = os.path.join(dataset_path, 'mm_adj_freedomdsp_{}_{}.pt'.format(self.knn_k, int(10*self.mm_image_weight)))
+        else:
+            mm_adj_file = os.path.join(dataset_path, 'mm_adj_freedomdsp_{}_{}_{}.pt'.format(self.knn_k, int(10*self.mm_image_weight), self.desc))
 
         if self.v_feat is not None:
             self.image_embedding = nn.Embedding.from_pretrained(self.v_feat, freeze=False)

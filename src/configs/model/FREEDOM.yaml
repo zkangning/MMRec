@@ -11,5 +11,6 @@ knn_k: 10
 
 mm_image_weight: 0.1
 dropout: [0.8, 0.9]
+desc: "1core"
 
 hyper_parameters: ["dropout", "reg_weight"]
