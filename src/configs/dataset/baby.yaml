@@ -9,8 +9,10 @@ filter_out_cod_start_users: True
 inter_file_name: 'baby.inter'
 
 # name of features
-vision_feature_file: 'baby_check_128/image_feat.npy'
-text_feature_file: 'baby_check_128/text_feat.npy'
+# vision_feature_file: 'baby_check_128/image_feat.npy'
+# text_feature_file: 'baby_check_128/text_feat.npy'
+vision_feature_file: 'image_feat.npy'
+text_feature_file: 'text_feat.npy'
 user_graph_dict_file: 'user_graph_dict.npy'
 
 field_separator: "\t"
@@ -23,7 +25,7 @@ modal_augment: False
 augment_threshold: 3    # 对训练数据集中交互数小于5个的进行增强
 modal_augment_ratio: 0.35   # 额外补充k个交互物品
 # modal_denoise
-modal_denoise: True
+modal_denoise: False
 denoise_threshold: 15
 modal_denoise_ratio: 0.1
 
