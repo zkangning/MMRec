@@ -77,11 +77,6 @@ device = torch.device("cuda:0" if args.cuda else "cpu")
 
 print("Starting time: ", time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
 
-### DATA LOAD ###
-# train_path = args.data_path + 'train_list.npy'
-# valid_path = args.data_path + 'valid_list.npy'
-# test_path = args.data_path + 'test_list.npy'
-
 train_data, valid_y_data, test_y_data, n_user, n_item = data_utils.data_load(args)
 train_dataset = data_utils.DataDiffusion(torch.FloatTensor(train_data.A))
 train_loader = DataLoader(train_dataset, batch_size=args.batch_size, pin_memory=True, shuffle=True, num_workers=4, worker_init_fn=worker_init_fn)
@@ -169,7 +164,6 @@ for epoch in range(1, args.epochs + 1):
         total_loss += loss
         loss.backward()
         optimizer.step()
-        import pdb; pdb.set_trace()
     
     if epoch % 5 == 0:
         valid_results = evaluate(test_loader, valid_y_data, train_data, eval(args.topN))

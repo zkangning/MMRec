@@ -6,7 +6,7 @@ import math
 
 class DNN(nn.Module):
     """
-    A deep neural network for the reverse diffusion preocess.
+    A deep neural network for the reverse diffusion process.
     """
     def __init__(self, in_dims, out_dims, emb_size, time_type="cat", norm=False, dropout=0.5):
         super(DNN, self).__init__()
@@ -32,6 +32,7 @@ class DNN(nn.Module):
         
         self.drop = nn.Dropout(dropout)
         self.init_weights()
+        print(self)
     
     def init_weights(self):
         for layer in self.in_layers:
@@ -102,3 +103,14 @@ def timestep_embedding(timesteps, dim, max_period=10000):
     if dim % 2:
         embedding = torch.cat([embedding, torch.zeros_like(embedding[:, :1])], dim=-1)
     return embedding
+
+class AutoEncoder(nn.Module):
+    def __init__(self, input_size, hidden_size):
+        super(AutoEncoder, self).__init__()
+        self.encoder = nn.Linear(input_size, hidden_size)
+        self.decoder = nn.Linear(hidden_size, input_size)
+
+    def forward(self, x):
+        encoded = self.encoder(x)
+        decoded = self.decoder(encoded)
+        return decoded
